@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | TimberArt-Nepal</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f7f7f7, #ffffff);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(90deg, #00264d, #004080);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: top 0.3s;
+}
+
+.header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header-left .logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+/* Nav Links */
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover { color: #ffd700; }
+
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons a {
+    background-color: white;
+    color: #004080;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.auth-buttons a:hover { background-color: #004080; color: white; }
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s;
+}
+
+/* Hero */
+header.hero {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/tumber.jpg') no-repeat center center/cover;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    margin-top: 80px;
+}
+
+header.hero h2 { font-size: 2.8rem; margin: 0; }
+header.hero p { font-size: 1.2rem; margin-top: 10px; }
+
+/* About Section */
+.about-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.about-section h2 {
+    color: #004080;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.highlight { color: #2980b9; font-weight: bold; }
+
+/* Footer */
+footer {
+    background: #00264d;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; width: 100%; background-color: #004080; border-radius: 8px; margin-top: 5px; padding: 10px; position: absolute; top: 100%; right: 0; }
+    .nav-links.active { display: flex; }
+    .nav-links a { padding: 10px; text-align: center; }
+    .auth-buttons { width: 100%; justify-content: center; margin-top: 5px; }
+    .hamburger { display: flex; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header" id="header">
+    <div class="container">
+        <div class="header-left">
+            <h1>TimberArt-Nepal</h1>
+            <img src="images/logo.png" alt="Logo" class="logo">
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contactus.html">Contact Us</a>
+            <a href="cart.html">My Cart</a>
+        </nav>
+
+        <div class="auth-buttons">
+            <a href="register.html">Register</a>
+            <a href="login.html">Login</a>
+        </div>
+
+        <div class="hamburger" onclick="toggleMenu(this)">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Hero -->
+<header class="hero">
+    <h2>Welcome to TimberArt-Nepal</h2>
+    <p>Delivering the finest, eco-friendly timber products straight from the heart of Nepal</p>
+</header>
+
+<!-- About Section -->
+<section class="about-section">
+    <h2>About Us</h2>
+    <p>
+        Located in the vibrant heart of Thamel, Kathmandu, <span class="highlight">TimberArt-Nepal</span> has established itself as a leader in the timber and forestry industry. 
+        We are passionate about providing our customers with top-quality, sustainable timber products both locally and internationally.
+    </p>
+    <p>
+        Our goal is to embrace <span class="highlight">eco-friendly practices</span> while meeting the increasing demand for high-quality timber products. Backed by a dedicated team of professionals 
+        and advanced technology, we ensure that every product we offer meets the highest standards of excellence.
+    </p>
+    <p>
+        At TimberArt-Nepal, we strive to create a harmonious balance between progress and the environment. Join us on our journey toward a greener, more sustainable future.
+    </p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 TimberArt-Nepal. All Rights Reserved.</p>
+</footer>
+
+<script>
+// Hamburger toggle
+function toggleMenu(hamburger) {
+    const nav = document.querySelector('.nav-links');
+    nav.classList.toggle('active');
+}
+
+// Scroll behavior: hide header and show mobile sticky
+const header = document.getElementById('header');
+const mobileButton = document.getElementById('mobileButton');
+
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop && st > 100) {
+        header.style.top = "-100px";
+        if (window.innerWidth <= 768) mobileButton.style.display = "flex";
+    } else {
+        header.style.top = "0";
+        mobileButton.style.display = "none";
+        mobileMenu.style.display = "none";
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+});
+
+
+</script>
+
+</body>
+</html>

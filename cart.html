@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart | TimberArt-Nepal</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fffafaf;
+}
+
+/* --- Header/Navbar --- */
+.header {
+    background: linear-gradient(90deg, #00264d, #004080);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: top 0.3s;
+}
+.header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.header-left h1 {
+    margin: 0;
+    font-size: 24px;
+}
+.header-left .logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.nav-links a:hover { color: #ffd700; }
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+.auth-buttons a {
+    background-color: white;
+    color: #004080;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.auth-buttons a:hover { background-color: #004080; color: white; }
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s;
+}
+
+/* Cart page styles */
+.container-cart {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: whitesmoke;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 20px;
+}
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    gap: 15px;
+}
+.cart-item img { max-width: 100px; border-radius: 5px; }
+.cart-item-details { flex: 1; }
+.cart-item .price { font-weight: bold; color: green; }
+.quantity-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 5px;
+}
+.quantity-controls button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+.btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; flex: 1 1 150px; }
+.btn-clear { background-color: red; color: white; }
+.btn-checkout { background-color: goldenrod; color: white; }
+.btn-clear-all { background-color: #f44336; color: white; margin-top: 10px; }
+.total { font-size: 18px; font-weight: bold; margin-top: 20px; }
+.recent-items { margin-top: 40px; padding: 15px; background-color: lightgray; border-radius: 8px; }
+.recent-items h3 { margin-top: 0; color: #004080; }
+
+
+
+
+/* Wrapper for cart content */
+.container-cart-wrapper {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: whitesmoke;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+/* Make recent items inside same container */
+.recent-items {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+/* Footer */
+.footer {
+    background: #00264d;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    margin-top: 40px;
+    font-size: 16px;
+}
+
+.footer p { margin: 0; }
+.footer a {
+    color: #ffd700;
+    text-decoration: none;
+    margin: 0 5px;
+}
+.footer a:hover { text-decoration: underline; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; width: 100%; }
+    .nav-links.active { display: flex; }
+    .hamburger { display: flex; }
+    .auth-buttons { width: 100%; justify-content: center; margin-top: 5px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header" id="header">
+    <div class="container">
+        <div class="header-left">
+            <h1>TimberArt-Nepal</h1>
+            <img src="images/logo.png" alt="Logo" class="logo">
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contactus.html">Contact Us</a>
+            <a href="cart.html">My Cart</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="register.html">Register</a>
+            <a href="login.html">Login</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu(this)">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile sticky button -->
+<div class="mobile-sticky" id="mobileButton">☰</div>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="aboutus.html">About Us</a>
+    <a href="contactus.html">Contact Us</a>
+    <a href="cart.html">My Cart</a>
+    <a href="register.html">Register</a>
+    <a href="login.html">Login</a>
+</div>
+
+
+
+<!-- Cart container -->
+<!-- Main container for cart page -->
+<div class="container-cart-wrapper">
+    <div class="container-cart" id="cart-container"></div>
+    
+    <div class="total" id="total-amount">Total: Rs 0</div>
+    
+    <div class="buttons">
+        <button class="btn btn-clear" onclick="clearCart()">Clear Cart</button>
+        <button class="btn btn-checkout" onclick="checkout()">Proceed to Checkout</button>
+        <button class="btn btn-checkout" onclick="buyNow()">Buy Now</button>
+    </div>
+    
+    <div class="recent-items" id="recent-items">
+        <h3>Recently Bought Items</h3>
+        <div id="recent-items-container"></div>
+        <button class="btn btn-clear-all" onclick="clearRecentItems()">Clear All</button>
+    </div>
+</div>
+<div class="footer">
+    <p>&copy; 2024 TimberArt-Nepal. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
+</div>
+
+<script>
+// Navbar mobile toggle
+function toggleMenu(hamburger){
+    const nav = document.querySelector('.nav-links');
+    nav.classList.toggle('active');
+}
+
+// Mobile sticky menu
+const header = document.getElementById('header');
+const mobileButton = document.getElementById('mobileButton');
+
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if(st > lastScrollTop && st > 100){
+        header.style.top = "-100px";
+        if(window.innerWidth <= 768) mobileButton.style.display = "flex";
+    } else {
+        header.style.top = "0";
+        mobileButton.style.display = "none";
+        mobileMenu.style.display = "none";
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+});
+
+
+
+
+
+// Cart functions
+function renderCart(){
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartContainer = document.getElementById("cart-container");
+    const totalAmountElem = document.getElementById("total-amount");
+    cartContainer.innerHTML = "";
+    let totalAmount = 0;
+    if(cart.length===0){ cartContainer.innerHTML="<p>Your cart is empty.</p>"; totalAmountElem.innerHTML="Total: Rs 0"; return; }
+    cart.forEach((item,index)=>{
+        const div=document.createElement("div");
+        div.classList.add("cart-item");
+        div.innerHTML=`
+            <img src="${item.img}" alt="${item.name}">
+            <div class="cart-item-details">
+                <h3>${item.name}</h3>
+                <p class="price">Price: Rs ${item.price}</p>
+                <div class="quantity-controls">
+                    <button onclick="updateQuantity(${index},-1)">-</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="updateQuantity(${index},1)">+</button>
+                </div>
+                <button onclick="removeItem(${index})">Remove</button>
+            </div>
+        `;
+        cartContainer.appendChild(div);
+        totalAmount += item.price*item.quantity;
+    });
+    totalAmountElem.innerHTML=`Total: Rs ${totalAmount}`;
+}
+
+function updateQuantity(index,change){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart[index].quantity+=change;
+    if(cart[index].quantity<=0) cart.splice(index,1);
+    localStorage.setItem("cart",JSON.stringify(cart));
+    renderCart();
+}
+
+function removeItem(index){
+    let cart=JSON.parse(localStorage.getItem("cart"))||[];
+    cart.splice(index,1);
+    localStorage.setItem("cart",JSON.stringify(cart));
+    renderCart();
+}
+
+function clearCart(){ localStorage.removeItem("cart"); renderCart(); }
+
+function checkout(){
+    const cart=JSON.parse(localStorage.getItem("cart"))||[];
+    if(cart.length===0){ alert("Cart is empty"); return; }
+    alert("Checkout successful!");
+    localStorage.removeItem("cart");
+    renderCart();
+}
+
+function buyNow(){
+    let cart=JSON.parse(localStorage.getItem("cart"))||[];
+    if(cart.length===0){ alert("Cart is empty"); return; }
+    let recentItems=JSON.parse(localStorage.getItem("recentItems"))||[];
+    cart.forEach(item=>{ recentItems.push(item); });
+    localStorage.setItem("recentItems",JSON.stringify(recentItems));
+    localStorage.removeItem("cart");
+    window.location.href="payment.html";
+}
+
+function displayRecentlyBoughtItems(){
+    const recentItems=JSON.parse(localStorage.getItem("recentItems"))||[];
+    const container=document.getElementById("recent-items-container");
+    container.innerHTML="";
+    if(recentItems.length===0){ container.innerHTML="<p>No recently bought items</p>"; return; }
+    recentItems.forEach(item=>{
+        const div=document.createElement("div");
+        div.classList.add("cart-item");
+        div.innerHTML=`
+            <img src="${item.img}" width="80" alt="${item.name}">
+            <div>
+                <h4>${item.name}</h4>
+                <p>Rs ${item.price}</p>
+                <p>Qty: ${item.quantity}</p>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function clearRecentItems(){ localStorage.removeItem("recentItems"); displayRecentlyBoughtItems(); }
+
+window.onload=function(){ renderCart(); displayRecentlyBoughtItems(); }
+</script>
+
+</body>
+</html>
