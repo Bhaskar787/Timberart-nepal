@@ -1,276 +1,460 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stylish Scarves</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Scarves Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7c2d12;
+            --accent-pink: #ec4899;
+            --success: #10b981;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 20px rgba(0,0,0,0.12);
+            --radius: 12px;
+        }
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    margin:0;
-    padding:0;
-    background-color: rgb(245,245,245);
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-header{
-    background:#2c3e50;
-    color:white;
-    padding:20px;
-    text-align:center;
-    font-size:1.5rem;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--gray-50) 0%, #e5e7eb 100%);
+            line-height: 1.6;
+            color: var(--gray-900);
+        }
 
-.container{
-    display:flex;
-    justify-content:space-between;
-    margin:20px auto;
-    max-width:1200px;
-    background:white;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
-    border-radius:8px;
-    overflow:hidden;
-}
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), #9d4b2a);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
 
-.product-image{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:#ecf0f1;
-}
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
 
-.product-image img{
-    max-width:100%;
-    border-radius:10px;
-}
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            color: var(--gray-700);
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            margin: 1.5rem 2rem 1rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
 
-.product-details{
-    flex:2;
-    padding:20px;
-    background:#f5f5f5;
-}
+        .back-button:hover {
+            color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
 
-.product-title{
-    font-size:2rem;
-    color:#34495e;
-}
+        /* Main Container */
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
 
-.product-description{
-    margin:10px 0;
-    color:#7f8c8d;
-}
+        /* Product Card */
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
 
-.price{
-    font-size:1.6rem;
-    font-weight:bold;
-    color:#27ae60;
-}
+        .product-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
 
-.rating span{
-    color:gold;
-    font-size:1.3rem;
-}
+        /* Fabric Image Frame */
+        .product-image-frame {
+            position: relative;
+            aspect-ratio: 4/3;
+            width: 100%;
+            max-width: 400px;
+            background: linear-gradient(145deg, #fdf2f8, #fce7f3);
+            border: 22px solid #fce7f3;
+            border-radius: 24px;
+            box-shadow: 
+                0 12px 40px rgba(0,0,0,0.15),
+                inset 0 4px 12px rgba(255,255,255,0.95),
+                inset 0 -4px 12px rgba(0,0,0,0.08);
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem;
+        }
 
-.buttons{
-    margin-top:15px;
-    display:flex;
-    gap:10px;
-}
+        .product-image-frame::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 10%;
+            background: linear-gradient(145deg, #ffffff, #faf9f6);
+            border-radius: 18px;
+            box-shadow: 
+                inset 0 4px 16px rgba(255,255,255,1),
+                inset 0 -3px 12px rgba(0,0,0,0.08);
+            z-index: 1;
+        }
 
-.btn{
-    padding:10px 20px;
-    border:none;
-    border-radius:50px;
-    cursor:pointer;
-    font-weight:bold;
-}
+        .product-image {
+            position: relative;
+            z-index: 2;
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.22),
+                0 4px 16px rgba(255,255,255,0.8);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-.btn-buy{
-    background:#f39c12;
-    color:white;
-}
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
 
-.btn-cart{
-    background:#bdc3c7;
-}
+        /* Product Details */
+        .product-details {
+            padding: 2.5rem;
+        }
 
-.btn-feedback,.btn-gift{
-    background:#9b59b6;
-    color:white;
-    padding:8px 15px;
-    text-decoration:none;
-    border-radius:5px;
-}
-.back-button {
-    display: inline-block;
-    margin: 20px;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-decoration: none;
-}
+        .product-title {
+            font-size: 2.125rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
 
-.back-button:hover {
-    background-color: #2980b9;
-    transform: scale(1.05);
-}
+        .product-description {
+            color: var(--gray-600);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
 
-footer{
-    text-align:center;
-    padding:15px;
-    margin-top:30px;
-    background:#34495e;
-    color:white;
-}
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 2px solid var(--gray-100);
+        }
 
-@media screen and (max-width:768px){
-.container{
-    flex-direction:column;
-}
-}
-</style>
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-pink), #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.05em;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .stars {
+            color: var(--accent-pink);
+            font-size: 1.75rem;
+            text-shadow: 0 2px 4px rgba(236, 72, 153, 0.4);
+        }
+
+        .rating-count {
+            color: var(--gray-600);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 1.125rem 1.75rem;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-primary {
+            background: var(--success);
+            color: white;
+            box-shadow: var(--shadow-sm);
+            grid-column: span 2;
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gray-400);
+            background: var(--gray-50);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-pink), #db2777);
+            color: white;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                margin-bottom: 2.5rem;
+                gap: 2rem;
+            }
+            
+            .product-image-frame {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            
+            .product-details {
+                padding: 2rem 1.5rem;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .btn-primary {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-container {
+                padding: 0 0.75rem 2rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <header>
+        <h1><i class="fas fa-hand-holding-heart"></i> Elegant Scarves</h1>
+    </header>
 
-<header>
-<h1>Stylish Scarves</h1>
-</header>
+    <a href="index.html" class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
 
-<div class="back-button" onclick="goBack()">
-    &#8592; Back
-</div>
+    <div class="products-container">
+        <!-- Product 1: Winter Wool Scarf -->
+        <div class="product-card">
+            <div class="product-image-frame">
+                <img src="images/scarves.png" alt="Winter Wool Scarf" class="product-image">
+            </div>
+            <div class="product-details">
+                <h2 class="product-title">Winter Wool Scarf</h2>
+                <p class="product-description">
+                    Luxurious winter wool scarf crafted from premium merino wool. Soft, warm, 
+                    and stylish - perfect accessory for cold weather fashion.
+                </p>
+                <div class="price-section">
+                    <div class="price">Rs 1,800</div>
+                    <div class="rating">
+                        <div class="stars">⭐⭐⭐⭐</div>
+                        <span class="rating-count">(127)</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="buyNow('Winter Wool Scarf', 1800, 'images/scarves.png')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                    <button class="btn btn-secondary" onclick="addToCart('Winter Wool Scarf', 1800, 'images/scarves.png')">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="feedback.html" class="btn btn-accent" style="padding: 0.875rem 1.5rem; font-size: 0.95rem;">
+                        <i class="fas fa-comment-dots"></i> Feedback
+                    </a>
+                    <a href="gift.html" class="btn btn-accent" style="padding: 0.875rem 1.5rem; font-size: 0.95rem;">
+                        <i class="fas fa-gift"></i> Gift This
+                    </a>
+                </div>
+            </div>
+        </div>
 
+        <!-- Product 2: Silk Fashion Scarf -->
+        <div class="product-card">
+            <div class="product-image-frame">
+                <img src="images/scarf2.png" alt="Silk Fashion Scarf" class="product-image">
+            </div>
+            <div class="product-details">
+                <h2 class="product-title">Silk Fashion Scarf</h2>
+                <p class="product-description">
+                    Exquisite 100% silk fashion scarf with hand-painted patterns. Lightweight, 
+                    elegant, and versatile for both casual and formal occasions.
+                </p>
+                <div class="price-section">
+                    <div class="price">Rs 2,200</div>
+                    <div class="rating">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <span class="rating-count">(203)</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="buyNow('Silk Fashion Scarf', 2200, 'images/scarf2.png')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                    <button class="btn btn-secondary" onclick="addToCart('Silk Fashion Scarf', 2200, 'images/scarf2.png')">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="feedback.html" class="btn btn-accent" style="padding: 0.875rem 1.5rem; font-size: 0.95rem;">
+                        <i class="fas fa-comment-dots"></i> Feedback
+                    </a>
+                    <a href="gift.html" class="btn btn-accent" style="padding: 0.875rem 1.5rem; font-size: 0.95rem;">
+                        <i class="fas fa-gift"></i> Gift This
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Product 1 -->
-<div class="container">
+    <footer>
+        <p><i class="fas fa-heart"></i> © 2024 Elegant Scarves. Wrap yourself in luxury</p>
+    </footer>
 
-<div class="product-image">
-<img src="images/scarves.png" alt="Winter Wool Scarf">
-</div>
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
 
-<div class="product-details">
-<h2 class="product-title">Winter Wool Scarf</h2>
+        function addToCart(name, price, img) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const product = { name, price, img, quantity: 1 };
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            showToast(`${name} added to cart!`, 'success');
+            setTimeout(() => window.location.href = "cart.html", 1500);
+        }
 
-<p class="product-description">
-Stay warm and stylish with our premium winter wool scarf. 
-Perfect for cold weather and trendy outfits.
-</p>
+        function buyNow(name, price, img) {
+            let recentItems = JSON.parse(localStorage.getItem("recentItems")) || [];
+            const item = { name, price, img, quantity: 1 };
+            recentItems.push(item);
+            localStorage.setItem("recentItems", JSON.stringify(recentItems));
+            showToast(`Processing ${name}...`, 'success');
+            setTimeout(() => window.location.href = "payment.html", 1500);
+        }
 
-<p class="price">Price: Rs 1800</p>
-
-<div class="rating">
-<span>⭐⭐⭐⭐</span>
-</div>
-
-<div class="buttons">
-<button class="btn btn-buy" onclick="buyNow('Winter Wool Scarf',1800,'images/scarves.png')">Buy Now</button>
-
-<button class="btn btn-cart" onclick="addToCart('Winter Wool Scarf',1800,'images/scarves.png')">Add to Cart</button>
-
-<a href="feedback.html" class="btn-feedback">Feedback</a>
-<a href="gift.html" class="btn-gift">Gift</a>
-</div>
-
-</div>
-</div>
-
-
-
-<!-- Product 2 -->
-<div class="container">
-
-<div class="product-image">
-<img src="images/scarf2.png" alt="Silk Fashion Scarf">
-</div>
-
-<div class="product-details">
-<h2 class="product-title">Silk Fashion Scarf</h2>
-
-<p class="product-description">
-Elegant silk scarf designed to match both casual and formal wear.
-Soft fabric and beautiful patterns.
-</p>
-
-<p class="price">Price: Rs 2200</p>
-
-<div class="rating">
-<span>⭐⭐⭐⭐⭐</span>
-</div>
-
-<div class="buttons">
-<button class="btn btn-buy" onclick="buyNow('Silk Fashion Scarf',2200,'images/scarf2.png')">Buy Now</button>
-
-<button class="btn btn-cart" onclick="addToCart('Silk Fashion Scarf',2200,'images/scarves.png')">Add to Cart</button>
-
-<a href="feedback.html" class="btn-feedback">Feedback</a>
-<a href="gift.html" class="btn-gift">Gift</a>
-</div>
-
-</div>
-</div>
-
-
-
-<footer>
-<p>&copy; 2024 Stylish Scarves. All rights reserved.</p>
-</footer>
-
-
-
-<script>
-    function goBack() {
-    window.location.href = 'index.html';
-}
-
-function addToCart(name,price,img){
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-const product={
-name:name,
-price:price,
-img:img,
-quantity:1
-};
-
-cart.push(product);
-
-localStorage.setItem("cart",JSON.stringify(cart));
-
-alert(name+" added to cart!");
-
-window.location.href="cart.html";
-
-}
-
-function buyNow(name,price,img){
-
-let recentItems = JSON.parse(localStorage.getItem("recentItems")) || [];
-
-const product={
-name:name,
-price:price,
-img:img,
-quantity:1
-};
-
-recentItems.push(product);
-
-localStorage.setItem("recentItems",JSON.stringify(recentItems));
-
-window.location.href="payment.html";
-
-}
-
-</script>
-
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                font-weight: 500;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                z-index: 10000;
+                transform: translateX(350px);
+                transition: transform 0.3s ease;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.style.transform = 'translateX(0)', 100);
+            setTimeout(() => {
+                toast.style.transform = 'translateX(350px)';
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 3000);
+        }
+    </script>
 </body>
 </html>

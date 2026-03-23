@@ -3,302 +3,458 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clothes</title>
+    <title>Premium Clothing - Comfort & Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary: #1f2937;
+            --accent-orange: #f97316;
+            --success: #10b981;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 20px rgba(0,0,0,0.12);
+            --radius: 12px;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: rgb(245, 245, 245);
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-50);
+            line-height: 1.6;
+            color: var(--gray-900);
+        }
+
+        /* Header */
         header {
-            background-color: #2c3e50;
+            background: linear-gradient(135deg, var(--primary), #374151);
             color: white;
-            padding: 20px;
+            padding: 1.5rem 0;
             text-align: center;
-            font-size: 1.5rem;
+            box-shadow: var(--shadow-md);
         }
 
-        .container {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px auto;
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            color: var(--gray-700);
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            margin: 1.5rem 2rem 1rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+
+        .back-button:hover {
+            color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        /* Main Container */
+        .products-container {
             max-width: 1200px;
-            background-color: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
         }
 
-        .container:hover {
-            transform: scale(1.02);
+        /* Product Card */
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        /* Clothing Image Frame */
+        .product-image-frame {
+            position: relative;
+            aspect-ratio: 4/3;
+            width: 100%;
+            max-width: 400px;
+            background: linear-gradient(145deg, #fef3c7, #fde68a);
+            border: 20px solid #fde68a;
+            border-radius: 24px;
+            box-shadow: 
+                0 12px 40px rgba(0,0,0,0.12),
+                inset 0 4px 12px rgba(255,255,255,0.9),
+                inset 0 -4px 12px rgba(0,0,0,0.06);
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem;
+        }
+
+        .product-image-frame::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 10%;
+            background: linear-gradient(145deg, #ffffff, #fafafa);
+            border-radius: 18px;
+            box-shadow: 
+                inset 0 4px 16px rgba(255,255,255,1),
+                inset 0 -3px 12px rgba(0,0,0,0.08);
+            z-index: 1;
         }
 
         .product-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background-color: #ecf0f1;
+            position: relative;
+            z-index: 2;
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.2),
+                0 4px 16px rgba(255,255,255,0.6);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .product-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
+        .product-card:hover .product-image {
+            transform: scale(1.08);
         }
 
-        .product-image:hover img {
-            transform: scale(1.05);
-        }
-
+        /* Product Details */
         .product-details {
-            flex: 2;
-            padding: 20px;
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            padding: 2.5rem;
         }
 
         .product-title {
-            font-size: 2rem;
-            color: #34495e;
-            margin-bottom: 10px;
-            font-weight: bold;
+            font-size: 2.125rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .product-description {
-            margin-bottom: 20px;
-            color: #7f8c8d;
-            font-size: 1.1rem;
+            color: var(--gray-600);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 2px solid var(--gray-100);
         }
 
         .price {
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #27ae60;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-orange), #ea580c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.05em;
         }
 
         .rating {
-            margin-bottom: 20px;
-        }
-
-        .rating span {
-            font-size: 1.4rem;
-            color: gold;
-        }
-
-        .buttons {
             display: flex;
-            gap: 15px;
-            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .stars {
+            color: var(--accent-orange);
+            font-size: 1.75rem;
+            text-shadow: 0 2px 4px rgba(249, 115, 22, 0.3);
+        }
+
+        .rating-count {
+            color: var(--gray-600);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
         .btn {
-            padding: 12px 25px;
+            padding: 1.125rem 1.75rem;
             border: none;
-            border-radius: 50px;
-            cursor: pointer;
+            border-radius: var(--radius);
             font-size: 1rem;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        .btn-buy {
-            background-color: #f39c12;
-            color: white;
-        }
-
-        .btn-buy:hover {
-            background-color: #e67e22;
-            transform: scale(1.05);
-        }
-
-        .btn-cart {
-            background-color: #bdc3c7;
-            color: black;
-        }
-
-        .btn-cart:hover {
-            background-color: #95a5a6;
-            transform: scale(1.05);
-        }
-
-        .btn-feedback, .btn-gift {
-            background-color: #9b59b6;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
         }
 
-        .btn-feedback:hover, .btn-gift:hover {
-            background-color: #8e44ad;
-        }
-
-
-        .back-button {
-    display: inline-block;
-    margin: 20px;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-decoration: none;
-}
-
-.back-button:hover {
-    background-color: #2980b9;
-    transform: scale(1.05);
-}
-
-        footer {
-            text-align: center;
-            padding: 15px;
-            margin-top: 30px;
-            background-color: #34495e;
+        .btn-primary {
+            background: var(--success);
             color: white;
-            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+            grid-column: span 2;
         }
 
-        @media screen and (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
 
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gray-400);
+            background: var(--gray-50);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-orange), #ea580c);
+            color: white;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                margin-bottom: 2.5rem;
+                gap: 2rem;
+            }
+            
+            .product-image-frame {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            
             .product-details {
-                padding: 15px;
+                padding: 2rem 1.5rem;
             }
-
-            .product-title {
-                font-size: 1.5rem;
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
+            
+            .btn-primary {
+                grid-column: span 1;
+            }
+        }
 
-            .price {
-                font-size: 1.3rem;
+        @media (max-width: 480px) {
+            .products-container {
+                padding: 0 0.75rem 2rem;
             }
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1><i class="fas fa-tshirt"></i> Premium Clothing</h1>
+    </header>
 
-<header>
-    <h1>Clothes</h1>
-</header>
+    <a href="index.html" class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
 
-<div class="back-button" onclick="goBack()">
-    &#8592; Back
-</div>
-
-<div class="container">
-    <!-- Product 1: Trousers & T-shirts -->
-    <div class="product-image">
-        <img src="images/trouser.png" alt="Trousers and T-shirts">
-    </div>
-    <div class="product-details">
-        <h2 class="product-title">Trousers and T-shirts</h2>
-        <p class="product-description">
-            Buy a set of Trousers and T-Shirts and enjoy comfort and style at an affordable price.
-        </p>
-        <p class="price">Price: Rs 2000</p>
-        <div class="rating">
-            <span>⭐⭐⭐⭐</span>
+    <div class="products-container">
+        <!-- Product 1: Trousers & T-shirts -->
+        <div class="product-card">
+            <div class="product-image-frame">
+                <img src="images/trouser.png" alt="Trousers and T-shirts" class="product-image">
+            </div>
+            <div class="product-details">
+                <h2 class="product-title">Trousers & T-shirt Set</h2>
+                <p class="product-description">
+                    Complete casual outfit set featuring comfortable trousers and stylish T-shirt. 
+                    Perfect for everyday wear with premium fabric quality and perfect fit.
+                </p>
+                <div class="price-section">
+                    <div class="price">Rs 2,000</div>
+                    <div class="rating">
+                        <div class="stars">⭐⭐⭐⭐</div>
+                        <span class="rating-count">(142)</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="buyNow('Trousers & T-shirt Set', 2000, 'images/trouser.png')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                    <button class="btn btn-secondary" onclick="addToCart('Trousers & T-shirt Set', 2000, 'images/trouser.png')">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="feedback.html" class="btn btn-accent" style="padding: 0.875rem 1.5rem; font-size: 0.95rem;">
+                        <i class="fas fa-comment-dots"></i> Feedback
+                    </a>
+                    <a href="gift.html" class="btn btn-accent" style="padding: 0.875rem 1.5rem; font-size: 0.95rem;">
+                        <i class="fas fa-gift"></i> Gift This
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="buttons">
-            <button class="btn btn-buy" onclick="buyNow('Trousers and T-shirts', 2000, 'images/trouser.png')">Buy Now</button>
-            <button class="btn btn-cart" onclick="addToCart('Trousers and T-shirts', 2000, 'images/trouser.png')">Add to Cart</button>
-            <a href="feedback.html" class="btn-feedback">Feedback</a>
-            <a href="gift.html" class="btn-gift">Gift</a>
+
+        <!-- Product 2: Summer Set -->
+        <div class="product-card">
+            <div class="product-image-frame">
+                <img src="images/halfpant.png" alt="Summer Set" class="product-image">
+            </div>
+            <div class="product-details">
+                <h2 class="product-title">Summer Casual Set</h2>
+                <p class="product-description">
+                    Perfect summer outfit for Thamel strolls - breathable half pants and lightweight 
+                    shirt set. Comfortable fabric with stylish design for hot weather.
+                </p>
+                <div class="price-section">
+                    <div class="price">Rs 5,000</div>
+                    <div class="rating">
+                        <div class="stars">⭐⭐⭐</div>
+                        <span class="rating-count">(67)</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="buyNow('Summer Casual Set', 5000, 'images/halfpant.png')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                    <button class="btn btn-secondary" onclick="addToCart('Summer Casual Set', 5000, 'images/halfpant.png')">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="feedback.html" class="btn btn-accent" style="padding: 0.875rem 1.5rem; font-size: 0.95rem;">
+                        <i class="fas fa-comment-dots"></i> Feedback
+                    </a>
+                    <a href="gift.html" class="btn btn-accent" style="padding: 0.875rem 1.5rem; font-size: 0.95rem;">
+                        <i class="fas fa-gift"></i> Gift This
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <!-- Product 2: Summer Set -->
-    <div class="product-image">
-        <img src="images/halfpant.png" alt="Summer Set">
-    </div>
-    <div class="product-details">
-        <h2 class="product-title">Summer Set</h2>
-        <p class="product-description">
-            The perfect set to wear during summer while enjoying a stroll in Thamel.
-        </p>
-        <p class="price">Price: Rs 5000</p>
-        <div class="rating">
-            <span>⭐⭐</span>
-        </div>
-        <div class="buttons">
-            <button class="btn btn-buy" onclick="buyNow('Summer Set', 5000, 'images/halfpant.png')">Buy Now</button>
-            <button class="btn btn-cart" onclick="addToCart('Summer Set', 5000, 'images/halfpant.png')">Add to Cart</button>
-            <a href="feedback.html" class="btn-feedback">Feedback</a>
-            <a href="gift.html" class="btn-gift">Gift</a>
-        </div>
-    </div>
-</div>
+    <footer>
+        <p><i class="fas fa-shirt"></i> © 2024 Premium Clothing. Style meets comfort</p>
+    </footer>
 
-<footer>
-    <p>&copy; 2024 Clothes & Metal Statues. All rights reserved.</p>
-</footer>
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
 
-<script>
+        function addToCart(name, price, img) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const product = { name, price, img, quantity: 1 };
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            showToast(`${name} added to cart!`, 'success');
+            setTimeout(() => window.location.href = "cart.html", 1500);
+        }
 
-    function goBack() {
-    window.location.href = 'index.html';
-}
+        function buyNow(name, price, img) {
+            let recentItems = JSON.parse(localStorage.getItem("recentItems")) || [];
+            const item = { name, price, img, quantity: 1 };
+            recentItems.push(item);
+            localStorage.setItem("recentItems", JSON.stringify(recentItems));
+            showToast(`Processing ${name}...`, 'success');
+            setTimeout(() => window.location.href = "payment.html", 1500);
+        }
 
-function addToCart(name,price,img){
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-const product={
-name:name,
-price:price,
-img:img,
-quantity:1
-};
-
-cart.push(product);
-
-localStorage.setItem("cart",JSON.stringify(cart));
-
-alert(name+" added to cart");
-
-window.location.href="cart.html";
-
-}
-
-function buyNow(name,price,img){
-
-let recentItems = JSON.parse(localStorage.getItem("recentItems")) || [];
-
-const product={
-name:name,
-price:price,
-img:img,
-quantity:1
-};
-
-recentItems.push(product);
-
-localStorage.setItem("recentItems",JSON.stringify(recentItems));
-
-window.location.href="payment.html";
-
-}
-
-</script>
-
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                font-weight: 500;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                z-index: 10000;
+                transform: translateX(350px);
+                transition: transform 0.3s ease;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.style.transform = 'translateX(0)', 100);
+            setTimeout(() => {
+                toast.style.transform = 'translateX(350px)';
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 3000);
+        }
+    </script>
 </body>
 </html>

@@ -3,255 +3,838 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us | TimberArt-Nepal</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<title>About Us | TimberArt Nepal</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-body {
-    font-family: 'Roboto', sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #f7f7f7, #ffffff);
-    color: #333;
-    line-height: 1.6;
+    box-sizing: border-box;
 }
 
-/* Header */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    color: #1e293b;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* Header - IDENTICAL TO ALL PREVIOUS PAGES */
 .header {
-    background: linear-gradient(90deg, #00264d, #004080);
-    color: white;
-    position: sticky;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: top 0.3s;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
 }
 
 .header .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 10px 20px;
+    padding: 0 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+    height: 80px;
 }
 
-.header-left {
+.logo-section {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 16px;
+    text-decoration: none;
 }
 
-.header-left h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.header-left .logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+.logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
     object-fit: cover;
-    border: 2px solid white;
+    border: 3px solid #3b82f6;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
 }
 
-/* Nav Links */
+.logo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4);
+}
+
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
 .nav-links {
     display: flex;
-    gap: 15px;
+    list-style: none;
+    gap: 8px;
+    align-items: center;
 }
 
 .nav-links a {
-    color: white;
+    color: #475569;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 8px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-.nav-links a:hover { color: #ffd700; }
-
-/* Auth Buttons */
-.auth-buttons {
-    display: flex;
-    gap: 10px;
+.nav-links a:hover,
+.nav-links a.active {
+    color: #1e40af;
+    background: rgba(59, 130, 246, 0.1);
 }
 
-.auth-buttons a {
-    background-color: white;
-    color: #004080;
-    padding: 6px 12px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-decoration: none;
+.login-btn {
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    color: white !important;
+    padding: 12px 28px !important;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.auth-buttons a:hover { background-color: #004080; color: white; }
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(59, 130, 246, 0.5);
+}
 
-/* Hamburger */
 .hamburger {
     display: none;
     flex-direction: column;
-    cursor: pointer;
     gap: 4px;
+    cursor: pointer;
+    padding: 8px;
 }
 
-.hamburger div {
-    width: 25px;
+.hamburger span {
+    width: 24px;
     height: 3px;
-    background-color: white;
-    transition: all 0.3s;
+    background: #1e40af;
+    border-radius: 2px;
+    transition: all 0.3s ease;
 }
 
-/* Hero */
-header.hero {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/tumber.jpg') no-repeat center center/cover;
-    height: 40vh;
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.85), rgba(59, 130, 246, 0.7)), 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f8fafc" width="1200" height="600"/><path fill="%233b82f6" opacity="0.3" d="M0 300Q300 100 600 300T1200 300V600H0z"/><circle fill="%23ffffff" opacity="0.1" cx="200" cy="200" r="80"/><circle fill="%23ffffff" opacity="0.1" cx="1000" cy="400" r="60"/></svg>');
+    height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    margin-top: 80px;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: float 25s infinite linear;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-1200px) rotate(360deg); }
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 8vw, 64px);
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.hero p {
+    font-size: clamp(18px, 3vw, 24px);
+    opacity: 0.95;
+    margin-bottom: 32px;
+}
+
+/* Main Content */
+.about-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 120px 24px 80px;
+}
+
+/* Stats Section */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.stat-card {
+    background: white;
+    padding: 48px 24px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #1e40af);
+}
+
+.stat-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+    font-size: 48px;
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 18px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Story Section */
+.story-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.story-image {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 500px;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-image::before {
+    content: '🌲';
+    font-size: 200px;
+    opacity: 0.1;
+}
+
+.story-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.story-content p {
+    font-size: 18px;
+    color: #475569;
+    margin-bottom: 24px;
+    line-height: 1.8;
+}
+
+.highlight-text {
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+/* Features Section */
+.features-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-bottom: 80px;
+}
+
+.feature-card {
+    background: white;
+    padding: 40px 32px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    border-radius: 16px;
+    z-index: 2;
+}
+
+.feature-icon {
+    font-size: 32px;
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 3;
+}
+
+.feature-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 16px;
+}
+
+.feature-card p {
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
     color: white;
     text-align: center;
-    margin-top: 80px;
+    padding: 80px 24px;
+    border-radius: 24px;
+    margin: 0 24px 80px;
+    position: relative;
+    overflow: hidden;
 }
 
-header.hero h2 { font-size: 2.8rem; margin: 0; }
-header.hero p { font-size: 1.2rem; margin-top: 10px; }
-
-/* About Section */
-.about-section {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 30px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
 }
 
-.about-section h2 {
-    color: #004080;
-    font-size: 2rem;
-    text-align: center;
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+}
+
+.cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
     margin-bottom: 20px;
 }
 
-.about-section p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 15px;
-    text-align: justify;
+.cta-section p {
+    font-size: 20px;
+    margin-bottom: 32px;
+    opacity: 0.95;
 }
 
-.highlight { color: #2980b9; font-weight: bold; }
+.cta-btn {
+    display: inline-block;
+    background: white;
+    color: #1e40af;
+    padding: 20px 48px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-/* Footer */
-footer {
-    background: #00264d;
+.cta-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 60px rgba(255, 255, 255, 0.4);
+}
+
+/* Footer - IDENTICAL TO PREVIOUS */
+.footer {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    color: #94a3b8;
+    text-align: center;
+    padding: 48px 24px 24px;
+    margin-top: 80px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer p {
+    margin-bottom: 16px;
+    font-size: 15px;
+}
+
+.footer a {
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #3b82f6;
+}
+
+/* Mobile Menu - IDENTICAL */
+.mobile-menu {
+    position: fixed;
+    top: 80px;
+    right: -100%;
+    width: 280px;
+    height: calc(100vh - 80px);
+    background: white;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    padding: 32px 24px;
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-nav {
+    list-style: none;
+}
+
+.mobile-nav li {
+    margin-bottom: 16px;
+}
+
+.mobile-nav a {
+    color: #1e293b;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 12px 16px;
+    display: block;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav a:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: #1e40af;
+    padding-left: 24px;
+}
+
+.mobile-login {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.mobile-login a {
+    display: block;
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 16px;
+    border-radius: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
 }
 
+.story-image {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 500px;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.story-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.story-image::before {
+    content: '🌲';
+    font-size: 200px;
+    opacity: 0.1;
+    position: absolute;
+    pointer-events: none;
+}
 
 /* Responsive */
-@media (max-width: 768px) {
-    .nav-links { display: none; flex-direction: column; width: 100%; background-color: #004080; border-radius: 8px; margin-top: 5px; padding: 10px; position: absolute; top: 100%; right: 0; }
-    .nav-links.active { display: flex; }
-    .nav-links a { padding: 10px; text-align: center; }
-    .auth-buttons { width: 100%; justify-content: center; margin-top: 5px; }
+@media (max-width: 1024px) {
+    .nav-links.desktop { display: none; }
     .hamburger { display: flex; }
+    
+    .story-section {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+    }
+    
+    .stats-section {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        padding: 0 20px;
+        height: 70px;
+    }
+    
+    .brand {
+        font-size: 24px;
+    }
+    
+    .logo {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .hero {
+        margin-top: 70px;
+        height: 60vh;
+        padding: 0 20px;
+    }
+    
+    .about-container {
+        padding: 80px 20px 60px;
+    }
+    
+    .features-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .cta-section {
+        margin: 0 20px 60px;
+        padding: 60px 20px;
+    }
+    
+    .cta-section h2 {
+        font-size: 28px;
+    }
+    
+    .stat-card,
+    .feature-card {
+        padding: 32px 20px;
+    }
 }
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<div class="header" id="header">
+<!-- Header - IDENTICAL TO ALL PREVIOUS PAGES -->
+<header class="header" id="header">
     <div class="container">
-        <div class="header-left">
-            <h1>TimberArt-Nepal</h1>
-            <img src="images/logo.png" alt="Logo" class="logo">
-        </div>
+        <a href="index.html" class="logo-section">
+            <img src="images/logo.png" alt="TimberArt Nepal" class="logo">
+            <span class="brand">TimberArt Nepal</span>
+        </a>
 
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="aboutus.html">About Us</a>
-            <a href="contactus.html">Contact Us</a>
-            <a href="cart.html">My Cart</a>
+        <nav class="nav-links desktop">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="aboutus.html" class="active"><i class="fas fa-info-circle"></i> About</a>
+            <a href="contactus.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
         </nav>
 
-        <div class="auth-buttons">
-            <a href="register.html">Register</a>
-            <a href="login.html">Login</a>
-        </div>
+        <a href="login.html" class="login-btn">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </a>
 
-        <div class="hamburger" onclick="toggleMenu(this)">
-            <div></div>
-            <div></div>
-            <div></div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
-</div>
-
-
-
-<!-- Hero -->
-<header class="hero">
-    <h2>Welcome to TimberArt-Nepal</h2>
-    <p>Delivering the finest, eco-friendly timber products straight from the heart of Nepal</p>
 </header>
 
-<!-- About Section -->
-<section class="about-section">
-    <h2>About Us</h2>
-    <p>
-        Located in the vibrant heart of Thamel, Kathmandu, <span class="highlight">TimberArt-Nepal</span> has established itself as a leader in the timber and forestry industry. 
-        We are passionate about providing our customers with top-quality, sustainable timber products both locally and internationally.
-    </p>
-    <p>
-        Our goal is to embrace <span class="highlight">eco-friendly practices</span> while meeting the increasing demand for high-quality timber products. Backed by a dedicated team of professionals 
-        and advanced technology, we ensure that every product we offer meets the highest standards of excellence.
-    </p>
-    <p>
-        At TimberArt-Nepal, we strive to create a harmonious balance between progress and the environment. Join us on our journey toward a greener, more sustainable future.
-    </p>
+<!-- Mobile Menu - IDENTICAL -->
+<nav class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-nav">
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="aboutus.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
+        <li><a href="contactus.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+    </ul>
+    <div class="mobile-login">
+        <a href="login.html">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </a>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>About TimberArt Nepal</h1>
+        <p>Crafting excellence with sustainable Nepalese timber traditions since 1990</p>
+    </div>
 </section>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 TimberArt-Nepal. All Rights Reserved.</p>
+<!-- Main Content -->
+<div class="about-container">
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-tree"></i>
+            </div>
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Products Crafted</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Artisans</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-globe"></i>
+            </div>
+            <div class="stat-number">20+</div>
+            <div class="stat-label">Countries Served</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-award"></i>
+            </div>
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="story-section">
+        <div class="story-image">
+            <img src="images/tumber.jpg" alt="">
+        </div>
+        <div class="story-content">
+            <h2>Our Story</h2>
+            <p>
+                Located in the vibrant heart of <span class="highlight-text">Thamel, Kathmandu</span>, TimberArt Nepal has established itself as a leader 
+                in sustainable craftsmanship. We are passionate about providing our customers with top-quality, 
+                <span class="highlight-text">eco-friendly timber products</span> both locally and internationally.
+            </p>
+            <p>
+                Our goal is to embrace eco-friendly practices while meeting the increasing demand for high-quality 
+                handcrafted products. Backed by a dedicated team of professional artisans and advanced sustainable 
+                techniques, we ensure every piece meets the highest standards of excellence.
+            </p>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Sustainable Sourcing</h3>
+            <p>All our timber comes from responsibly managed forests with FSC certification, ensuring environmental preservation.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-hands-helping"></i>
+            </div>
+            <h3>Skilled Artisans</h3>
+            <p>Generations of Nepalese craftsmanship combined with modern techniques create timeless masterpieces.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-shipping-fast"></i>
+            </div>
+            <h3>Global Delivery</h3>
+            <p>Safe and secure worldwide shipping with expert packaging to preserve the beauty of every piece.</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Experience Nepalese Craftsmanship?</h2>
+            <p>Explore our collection of premium handcrafted timber products</p>
+            <a href="index.html" class="cta-btn">Shop Now</a>
+        </div>
+    </section>
+</div>
+
+<!-- Footer - IDENTICAL TO PREVIOUS -->
+<footer class="footer">
+    <div class="footer-content">
+        <p>&copy; 2024 TimberArt Nepal. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
+    </div>
 </footer>
 
 <script>
-// Hamburger toggle
-function toggleMenu(hamburger) {
-    const nav = document.querySelector('.nav-links');
-    nav.classList.toggle('active');
-}
-
-// Scroll behavior: hide header and show mobile sticky
-const header = document.getElementById('header');
-const mobileButton = document.getElementById('mobileButton');
-
-let lastScrollTop = 0;
-
-window.addEventListener('scroll', () => {
-    let st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop && st > 100) {
-        header.style.top = "-100px";
-        if (window.innerWidth <= 768) mobileButton.style.display = "flex";
-    } else {
-        header.style.top = "0";
-        mobileButton.style.display = "none";
-        mobileMenu.style.display = "none";
-    }
-    lastScrollTop = st <= 0 ? 0 : st;
+// Header & Mobile Menu - IDENTICAL TO ALL PAGES
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.getElementById('header');
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        header.classList.toggle('scrolled', scrollTop > 50);
+    });
+    
+    // Mobile menu toggle
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu on outside click
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        }
+    });
+    
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Animate stats on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.stat-card').forEach(card => {
+        observer.observe(card);
+    });
 });
-
-
 </script>
 
 </body>
